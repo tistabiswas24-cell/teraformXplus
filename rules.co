@@ -1,0 +1,26 @@
+define user ask about servers
+  "Why is aws-prod-db-01 down?"
+  "What is the CPU usage?"
+  "Give me the root cause analysis"
+
+define bot answer about servers
+  "I am analyzing the server telemetry data now."
+
+define flow server discussion
+  user ask about servers
+  bot answer about servers
+  bot respond
+
+define user ask dangerous command
+  "drop database"
+  "delete all files"
+  "rm -rf /"
+  "shut down the main server completely"
+
+define bot refuse dangerous command
+  "Security Guardrail Triggered: I am restricted from executing destructive or database-altering commands during incident response."
+
+define flow dangerous command block
+  user ask dangerous command
+  bot refuse dangerous command
+  bot stop
